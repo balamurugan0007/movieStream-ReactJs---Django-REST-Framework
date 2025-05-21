@@ -3,9 +3,17 @@ import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar'
 import { FaRegDotCircle, FaStar } from 'react-icons/fa'
 import { IoAddOutline } from 'react-icons/io5'
+import MovieSwiperCard from '../../components/MovieSwiperCard'
+import UseRequest from '../../api/UseRequest'
+import Routes, { Server_URL } from '../../api/Routes'
 
 
 const Home = () => {
+
+
+  const {data , err , loading} = UseRequest(`${Server_URL}${Routes.movies}`)
+
+
   return (
     <div className="bg-black w-full h-full flex">
      
@@ -60,27 +68,7 @@ const Home = () => {
            </div>
        </div>
 
-       <div className='popular-movies px-2 py-5 pb-10 mt-6'>
-          <h3 className='text-2xl font-open text-white-100'>popular Movies</h3>
-          <div className='movies-card mt-5'>
-              <div className='relative w-40 h-60 rounded-lg overflow-hidden cursor-pointer group'>
-                  <img 
-                    src='https://i.pinimg.com/736x/55/fd/2f/55fd2f65b3740b7fbd1b159e478450e2.jpg'
-                    alt=''
-                    className='w-full h-full rounded-lg  transition-transform duration-300 group-hover:scale-110'
-                    />
-                    <div className='text-contet absolute bottom-0 left-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                      <div className='backdrop-blur-md p-3 flex justify-between'>
-                          <h4 className='text-sm font-poppins text-black-900 font-semibold'>Star Wars</h4>
-                          <p className='flex items-center text-black-800 text-sm'>
-                            4.6 <FaStar className='text-amber-600 ml-1'/>
-                          </p>
-                      </div>
-
-                    </div>
-              </div>
-          </div>
-       </div>
+       <MovieSwiperCard data={data}/>
       </div>
       
     </div>
