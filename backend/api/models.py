@@ -32,6 +32,8 @@ class Movies(models.Model):
     release_date = models.DateField( auto_now=False, auto_now_add=False)
     is_popular = models.BooleanField(default=False)
     is_trending = models.BooleanField(default=False)
+    is_banner  = models.BooleanField(default=False)
+    banner = models.CharField(max_length=300 ,default= "")
     
     def __str__(self):
         return self.name
