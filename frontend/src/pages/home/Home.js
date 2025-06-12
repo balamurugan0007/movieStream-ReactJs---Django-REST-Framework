@@ -21,7 +21,7 @@ const Home = () => {
       <div className='w-full'>
       <HeroSection/>
 
-       <MovieSwiperCard data={data}/>
+       <MovieSwiperCard data={data}  is_popular = {true} title={"Popular Movies"}/>
       </div>
       
     </div>

@@ -5,27 +5,12 @@ import {Swiper ,SwiperSlide} from 'swiper/react'
 import 'swiper/css'
 import {FreeMode} from 'swiper/modules'
 
-const MovieSwiperCard = ({data}) => {
-  return (
-    <div>
-      <div className='popular-movies px-2 py-5 pb-10 mt-2'>
-                <h3 className='text-2xl font-open text-white-100'>popular Movies</h3>
-            <Swiper
-             modules={[FreeMode]}
-             spaceBetween={16}
-             slidesPerView={7.2}
-             freeMode = {true}
-             breakpoints={{
-              640: { slidesPerView : 2.5},
-              768 : {slidesPerView : 3.5},
-              1024 : {slidesPerView : 5.2}
-             }}
-            >
-             
-                  {
-               data && data.filter((res)=>res.is_popular === true).map((res)=>(
-                  <SwiperSlide>
-                     <div className='movies-card mt-5'>
+const MovieSwiperCard = ({data , is_popular , title}) => {
+
+
+  const Slidebar =({res})=>{
+    return (
+                           <div className='movies-card mt-5'>
                     <div className='relative w-40 h-60 rounded-lg overflow-hidden cursor-pointer group'>
                         <img 
                           src={res.poster}
@@ -43,6 +28,34 @@ const MovieSwiperCard = ({data}) => {
                           </div>
                     </div>
                 </div>
+    )
+  }
+
+  return (
+    <div>
+      <div className='popular-movies px-2 py-5 pb-10 mt-2'>
+                <h3 className='text-2xl font-open text-white-100'>{title}</h3>
+            <Swiper
+             modules={[FreeMode]}
+             spaceBetween={16}
+             slidesPerView={7.2}
+             freeMode = {true}
+             breakpoints={{
+              640: { slidesPerView : 2.5},
+              768 : {slidesPerView : 3.5},
+              1024 : {slidesPerView : 5.2}
+             }}
+            >
+             
+                  {
+                 is_popular ?   data && data.filter((res)=>res.is_popular === true).map((res)=>(
+                  <SwiperSlide>
+                    <Slidebar res= {res} />
+                  </SwiperSlide>
+                )) :
+                data && data.map((res)=>(
+                  <SwiperSlide>
+                     <Slidebar res= {res} />
                   </SwiperSlide>
                 ))
                }

@@ -2,7 +2,7 @@ import React from 'react'
 import UseRequest from '../api/UseRequest'
 import Routes, { Server_URL } from '../api/Routes'
 
-const Gener = () => {
+const Gener = ({onSeletedGenere}) => {
 
     const {data , err , loading} = UseRequest(`${Server_URL}${Routes.genere}`)
 
@@ -12,7 +12,7 @@ const Gener = () => {
         <div className='grid grid-cols-2 lg:grid-cols-9 gap-5'>
           {
             data && data.map((res)=>(
-                  <div className='bg-black-950 text-slate-200 hover:bg-amber-600 p-3 rounded-lg shadow-lg transition duration-300 hover:scale-105 flex justify-center items-center'>
+                  <div onClick={()=>onSeletedGenere(res)} className='bg-black-950 text-slate-200 hover:bg-amber-600 p-3 rounded-lg shadow-lg transition duration-300 hover:scale-105 flex justify-center items-center'>
                 <span className='text-lg font-semibold font-open'>{res.name}</span>
             </div>
             ))

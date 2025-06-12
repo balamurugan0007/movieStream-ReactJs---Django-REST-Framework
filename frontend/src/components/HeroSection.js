@@ -20,7 +20,8 @@ const HeroSection = () => {
              freeMode = {true}
              autoplay = {{
               delay : 2000,
-              disableOnInteraction : false
+              disableOnInteraction : false,
+              pauseOnMouseEnter : true
              }}
       >
              {
